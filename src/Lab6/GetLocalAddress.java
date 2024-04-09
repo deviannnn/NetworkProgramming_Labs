@@ -140,21 +140,29 @@ public class GetLocalAddress extends javax.swing.JFrame {
 
         try {
             int Iport = Integer.parseInt(port);
+
+            if (Iport < 1 || Iport > 65535) {
+                throw new IllegalArgumentException("Port must be between 1 and 65535");
+            }
+
             Socket socket = new Socket(host, Iport);
             InetAddress localAddress = socket.getLocalAddress();
             textAreaResult.setText("connecting from local address " + localAddress);
 
         } catch (NumberFormatException ex) {
-            Component fame = null;
             String warning = "Unknown input port: " + port;
             textAreaResult.setText(warning);
-            JOptionPane.showMessageDialog(fame, warning, "NumberFormatException", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, warning, "NumberFormatException", JOptionPane.WARNING_MESSAGE);
+
+        } catch (IllegalArgumentException ex) {
+            String warning = ex.getMessage();
+            textAreaResult.setText(warning);
+            JOptionPane.showMessageDialog(null, warning, "IllegalArgumentException", JOptionPane.WARNING_MESSAGE);
 
         } catch (UnknownHostException ex) {
-            Component fame = null;
             String warning = "Cannot connecting to remote " + host;
             textAreaResult.setText(warning);
-            JOptionPane.showMessageDialog(fame, warning, "UnknownHostException", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, warning, "UnknownHostException", JOptionPane.WARNING_MESSAGE);
 
         } catch (IOException ex) {
             System.err.println(ex);
@@ -165,42 +173,6 @@ public class GetLocalAddress extends javax.swing.JFrame {
         // TODO add your handling code here:
         Menu.backToMenu(this);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GetLocalAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GetLocalAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GetLocalAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GetLocalAddress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new GetLocalAddress().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

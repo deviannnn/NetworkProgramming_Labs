@@ -1,6 +1,5 @@
 package Lab6;
 
-import java.awt.Component;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -123,15 +122,13 @@ public class HighPortScanner extends javax.swing.JFrame {
                 String warning = "There is a server on port " + i + " of localhost";
                 result += warning + "\n";
 
-                Component fame = null;
-                JOptionPane.showMessageDialog(fame, warning, "HighPortScanner", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, warning, "HighPortScanner", JOptionPane.WARNING_MESSAGE);
                 textAreaResult.setText(result);
 
             } catch (UnknownHostException ex) {
-                Component fame = null;
                 String warning = "Could not find this computer's address";
                 textAreaResult.setText(warning);
-                JOptionPane.showMessageDialog(fame, warning, "UnknownHostException", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, warning, "UnknownHostException", JOptionPane.WARNING_MESSAGE);
                 break;
 
             } catch (IOException ex) {
@@ -139,48 +136,13 @@ public class HighPortScanner extends javax.swing.JFrame {
             }
         }
         
-        Component fame = null;
-        JOptionPane.showMessageDialog(fame, "Scanner Done!", "HighPortScanner", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Scanner Done!", "HighPortScanner", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Menu.backToMenu(this);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HighPortScanner.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HighPortScanner.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HighPortScanner.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HighPortScanner.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new HighPortScanner().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

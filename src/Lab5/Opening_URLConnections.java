@@ -1,6 +1,5 @@
 package Lab5;
 
-import java.awt.Component;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -119,16 +118,13 @@ public class Opening_URLConnections extends javax.swing.JFrame {
             URL url = new URL(input);
             URLConnection uc = url.openConnection();
             textAreaResult.setText("" + uc);
-            Component fame = null;
-            JOptionPane.showMessageDialog(fame, "successful connection", "URLConnection", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "successful connection", "URLConnection", JOptionPane.INFORMATION_MESSAGE);
         } catch (MalformedURLException ex) {
             textAreaResult.setText("" + ex);
-            Component fame = null;
-            JOptionPane.showMessageDialog(fame, "Could not find URL: " + input, "MalformedURLException", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Could not find URL: " + input, "MalformedURLException", JOptionPane.WARNING_MESSAGE);
         } catch (IOException ex) {
             textAreaResult.setText("" + ex);
-            Component fame = null;
-            JOptionPane.showMessageDialog(fame, "I/O devices disconnect", "IOException", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "I/O devices disconnect", "IOException", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -136,42 +132,6 @@ public class Opening_URLConnections extends javax.swing.JFrame {
         // TODO add your handling code here:
         Menu.backToMenu(this);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Opening_URLConnections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Opening_URLConnections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Opening_URLConnections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Opening_URLConnections.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Opening_URLConnections().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
