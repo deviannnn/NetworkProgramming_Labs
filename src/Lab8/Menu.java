@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Lab6;
+package Lab8;
 
 /**
  *
@@ -30,25 +30,25 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItem1 = new javax.swing.JMenuItem();
-        menuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
         menuItem3 = new javax.swing.JMenuItem();
         menuItem4 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         menuItem5 = new javax.swing.JMenuItem();
         menuItem6 = new javax.swing.JMenuItem();
-        menuItem7 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        menuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu_Lab8");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Lý Tuấn An, 52000620");
 
-        jMenu1.setText("*The Constructors");
+        jMenu1.setText("*DatagramPacket");
 
-        menuItem1.setText("1. LowPortScanner");
+        menuItem1.setText("1. Example");
         menuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem1ActionPerformed(evt);
@@ -56,71 +56,59 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(menuItem1);
 
-        menuItem2.setText("2. HighPortScanner");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("*DatagramSocket");
+
+        menuItem2.setText("1. UDP Local Port Scanner");
         menuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(menuItem2);
+        jMenu2.add(menuItem2);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenu2);
 
-        jMenu2.setText("*Infomation About a Socket");
+        jMenu3.setText("*UDP Discard");
 
-        menuItem3.setText("1. GetInetAddress");
+        menuItem3.setText("1. Server");
         menuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(menuItem3);
+        jMenu3.add(menuItem3);
 
-        menuItem4.setText("2. GetPort");
+        menuItem4.setText("2. Client");
         menuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem4ActionPerformed(evt);
             }
         });
-        jMenu2.add(menuItem4);
+        jMenu3.add(menuItem4);
 
-        menuItem5.setText("3. GetLocalPort");
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("*UDP TextUpperCase (Homework)");
+
+        menuItem5.setText("1. Server");
         menuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem5ActionPerformed(evt);
             }
         });
-        jMenu2.add(menuItem5);
+        jMenu4.add(menuItem5);
 
-        menuItem6.setText("4. GetLocalAddress");
+        menuItem6.setText("2. Client");
         menuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(menuItem6);
+        jMenu4.add(menuItem6);
 
-        menuItem7.setText("5. DaytimeClient");
-        menuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(menuItem7);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("*A Java command-line finger client");
-
-        menuItem8.setText("1. FingerClient");
-        menuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(menuItem8);
-
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -130,7 +118,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(
@@ -147,43 +135,29 @@ public class Menu extends javax.swing.JFrame {
 
     private void menuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem1ActionPerformed
         this.dispose();
-        new LowPortScanner().setVisible(true);
+        new DatagramExample().setVisible(true);
     }//GEN-LAST:event_menuItem1ActionPerformed
 
     private void menuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem2ActionPerformed
         this.dispose();
-        new HighPortScanner().setVisible(true);
+        new UDPLocalPortScanner().setVisible(true);
     }//GEN-LAST:event_menuItem2ActionPerformed
 
     private void menuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem3ActionPerformed
-        this.dispose();
-        new GetInetAddress().setVisible(true);
+        new UDPServer(false).setVisible(true);
     }//GEN-LAST:event_menuItem3ActionPerformed
 
     private void menuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem4ActionPerformed
-        this.dispose();
-        new GetPort().setVisible(true);
+        new UDPClient(false).setVisible(true);
     }//GEN-LAST:event_menuItem4ActionPerformed
 
     private void menuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem5ActionPerformed
-        this.dispose();
-        new GetLocalPort().setVisible(true);
+        new UDPServer(true).setVisible(true);
     }//GEN-LAST:event_menuItem5ActionPerformed
 
     private void menuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem6ActionPerformed
-        this.dispose();
-        new GetLocalAddress().setVisible(true);
+        new UDPClient(true).setVisible(true);
     }//GEN-LAST:event_menuItem6ActionPerformed
-
-    private void menuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem7ActionPerformed
-        this.dispose();
-        new DaytimeClient().setVisible(true);
-    }//GEN-LAST:event_menuItem7ActionPerformed
-
-    private void menuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItem8ActionPerformed
-        this.dispose();
-        new FingerClient().setVisible(true);
-    }//GEN-LAST:event_menuItem8ActionPerformed
 
     public static void backToMenu(javax.swing.JFrame e) {
         e.dispose();
@@ -229,6 +203,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuItem1;
     private javax.swing.JMenuItem menuItem2;
@@ -236,7 +211,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItem4;
     private javax.swing.JMenuItem menuItem5;
     private javax.swing.JMenuItem menuItem6;
-    private javax.swing.JMenuItem menuItem7;
-    private javax.swing.JMenuItem menuItem8;
     // End of variables declaration//GEN-END:variables
 }

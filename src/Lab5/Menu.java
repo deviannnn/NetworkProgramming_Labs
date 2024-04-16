@@ -45,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Lý Tuấn An, 52000620");
 
-        jMenu1.setText("URLConnections");
+        jMenu1.setText("*URLConnections");
 
         menuItem1.setText("Opening URLConnections");
         menuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Correct Charactor Set");
+        jMenu2.setText("*Correct Charactor Set");
 
         menuItem5.setText("Encoding Aware Source Viewer");
         menuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Configuring the Connection");
+        jMenu3.setText("*Configuring the Connection");
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -120,7 +120,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(

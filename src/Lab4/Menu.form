@@ -6,7 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Creating New URLs"/>
+            <Property name="text" type="java.lang.String" value="*Creating New URLs"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem1">
@@ -45,7 +45,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Splitting a URL into pieces"/>
+            <Property name="text" type="java.lang.String" value="*Splitting a URL into pieces"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem5">
@@ -132,7 +132,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Retrieving Data from a URL"/>
+            <Property name="text" type="java.lang.String" value="*Retrieving Data from a URL"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem15">
@@ -189,7 +189,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-              <Component id="jLabel1" max="32767" attributes="0"/>
+              <Component id="jLabel1" pref="273" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>

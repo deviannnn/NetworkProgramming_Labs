@@ -55,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Lý Tuấn An, 52000620");
 
-        jMenu1.setText("Creating New URLs");
+        jMenu1.setText("*Creating New URLs");
 
         menuItem1.setText("Constructing relative URLs");
         menuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Splitting a URL into pieces");
+        jMenu2.setText("*Splitting a URL into pieces");
 
         menuItem5.setText("GetAuthority");
         menuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +175,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Retrieving Data from a URL");
+        jMenu3.setText("*Retrieving Data from a URL");
 
         menuItem15.setText("Download a web page");
         menuItem15.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +211,7 @@ public class Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addGap(86, 86, 86))
         );
         layout.setVerticalGroup(

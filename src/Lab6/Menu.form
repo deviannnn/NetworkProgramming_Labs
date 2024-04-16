@@ -6,7 +6,7 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="The Constructors"/>
+            <Property name="text" type="java.lang.String" value="*The Constructors"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem1">
@@ -29,7 +29,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Infomation About a Socket"/>
+            <Property name="text" type="java.lang.String" value="*Infomation About a Socket"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem3">
@@ -76,7 +76,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A Java command-line finger client"/>
+            <Property name="text" type="java.lang.String" value="*A Java command-line finger client"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuItem8">
@@ -117,7 +117,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-              <Component id="jLabel1" pref="286" max="32767" attributes="0"/>
+              <Component id="jLabel1" pref="303" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>

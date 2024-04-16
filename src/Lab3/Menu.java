@@ -47,7 +47,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel1.setText("Lý Tuấn An, 52000620");
 
-        jMenu1.setText("InetAddress");
+        jMenu1.setText("*InetAddress");
 
         jMenuItem1.setText("GetByName");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("FactoryMethods");
+        jMenu2.setText("*FactoryMethods");
 
         jMenuItem6.setText("NetworkInterface_GetByName");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Baitap");
+        jMenu3.setText("*Baitap");
 
         jMenuItem9.setText("PhanLoaiDiaChi_IP");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {

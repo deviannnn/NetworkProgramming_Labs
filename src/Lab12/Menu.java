@@ -18,6 +18,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         createStudentMI = new javax.swing.JMenuItem();
@@ -27,10 +28,13 @@ public class Menu extends javax.swing.JFrame {
         showTeacherMI = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Main Menu");
+        setTitle("LyTuanAn_52000620_Lab12");
         setResizable(false);
 
-        jMenu1.setText("Create User");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        jLabel1.setText("Lý Tuấn An, 52000620");
+
+        jMenu1.setText("*Create User");
 
         createStudentMI.setText("Create Student");
         createStudentMI.addActionListener(new java.awt.event.ActionListener() {
@@ -50,7 +54,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Show User");
+        jMenu2.setText("*Show User");
 
         showStudentMI.setText("Show Student Info");
         showStudentMI.addActionListener(new java.awt.event.ActionListener() {
@@ -77,11 +81,17 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                .addGap(94, 94, 94))
         );
 
         pack();
@@ -148,6 +158,7 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem createStudentMI;
     private javax.swing.JMenuItem createTeacherMI;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
