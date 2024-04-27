@@ -1,18 +1,17 @@
-package Lab7;
+package Lab9;
 
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
 
-public class PortingChatServer extends javax.swing.JFrame {
+public class UDPChatServer extends javax.swing.JFrame {
 
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private DataInputStream dataIn;
-    private DataOutputStream dataOut;
+    private DatagramSocket server;
+    private DatagramPacket packet;
+    private int Iport, ImaxSize;
     private boolean isConnected = false;
 
-    public PortingChatServer() {
+    public UDPChatServer() {
         initComponents();
     }
 
@@ -31,13 +30,15 @@ public class PortingChatServer extends javax.swing.JFrame {
         startBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         msgArea = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        textFieldMaxSize = new javax.swing.JTextField();
 
         jLabel2.setText("jLabel2");
 
         jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Server");
+        setTitle("UDP Chat Server");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMinimumSize(new java.awt.Dimension(600, 352));
         setResizable(false);
@@ -83,6 +84,11 @@ public class PortingChatServer extends javax.swing.JFrame {
         msgArea.setRows(5);
         jScrollPane3.setViewportView(msgArea);
 
+        jLabel5.setText("Max Packet Size:");
+
+        textFieldMaxSize.setText("56507");
+        textFieldMaxSize.setToolTipText("protocol");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,26 +104,34 @@ public class PortingChatServer extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldPort)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldMaxSize, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(startBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(textFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startBtn))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textFieldMaxSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(textFieldPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(startBtn)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(sendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         setBounds(20, 100, 600, 400);
@@ -125,63 +139,52 @@ public class PortingChatServer extends javax.swing.JFrame {
 
     private void startBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startBtnActionPerformed
         // TODO add your handling code here:
-        String port = textFieldPort.getText().trim();
+        String maxSizeStr = textFieldMaxSize.getText().trim();
+        String portStr = textFieldPort.getText().trim();
 
         try {
-            int Iport = Integer.parseInt(port);
+            Iport = Integer.parseInt(portStr);
+            ImaxSize = Integer.parseInt(maxSizeStr);
 
             if (Iport < 1 || Iport > 65535) {
                 throw new IllegalArgumentException("Port number must be between 1 and 65535");
             }
 
-            serverSocket = new ServerSocket(Iport);
+            byte[] buffet = new byte[ImaxSize];
+            server = new DatagramSocket(Iport);
+            packet = new DatagramPacket(buffet, buffet.length);
 
-            Thread serverThread = new Thread(() -> {
-                while (true) {
-                    try {
-                        clientSocket = serverSocket.accept();
-
-                        Thread clientHandlerThread = new Thread(() -> {
-                            try {
-                                dataIn = new DataInputStream(clientSocket.getInputStream());
-                                dataOut = new DataOutputStream(clientSocket.getOutputStream());
-
-                                String msgIn = "";
-                                while (!msgIn.equals("exit")) {
-                                    msgIn = dataIn.readUTF();
-                                    chatDataArea.append(msgIn);
-                                }
-                            } catch (IOException e) {
-                                JOptionPane.showMessageDialog(null, "Client connection error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                            }
-                        });
-
-                        clientHandlerThread.start();
+            Thread receiverThread = new Thread(() -> {
+                try {
+                    String msg = "";
+                    while (!msg.equals("exit")) {
+                        server.receive(packet);
+                        msg = new String(packet.getData(), 0, packet.getLength(), "UTF-8");
+                        chatDataArea.append(packet.getAddress() + " at port " + packet.getPort() + " says: " + msg + "\n");
                         isConnected = true;
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(null, "Server connection error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                        break;
                     }
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "IOException", JOptionPane.ERROR_MESSAGE);
                 }
             });
-
-            serverThread.start();
-            chatDataArea.setText("Server was started ...\n");
+            receiverThread.start();
+            
+            chatDataArea.setText("Server was started...\n");
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Malformed port: " + port, "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Malformed Number at: " + maxSizeStr + " or " + portStr, "Invalid Number", JOptionPane.WARNING_MESSAGE);
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Invalid Port Number", JOptionPane.WARNING_MESSAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Server Connection Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SocketException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "SocketException", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_startBtnActionPerformed
 
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
         // TODO add your handling code here:
-        String msgOut = msgArea.getText().trim();
+        String responseMsg = msgArea.getText().trim();
 
-        if (!isConnected || msgOut.equals("")) {
+        if (!isConnected || responseMsg.equals("")) {
             if (!isConnected) {
                 JOptionPane.showMessageDialog(null, "No connection established yet!", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -190,8 +193,11 @@ public class PortingChatServer extends javax.swing.JFrame {
         }
 
         try {
-            dataOut.writeUTF("\nServer: " + msgOut);
-            chatDataArea.append("\nMe: " + msgOut);
+            byte[] responseData = responseMsg.getBytes("UTF-8");
+            DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length, packet.getAddress(), packet.getPort());
+            server.send(responsePacket);
+
+            chatDataArea.append("\nMe: " + responseMsg + "\n");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Server Connection Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -200,13 +206,10 @@ public class PortingChatServer extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        try {
-            if (serverSocket != null && !serverSocket.isClosed()) {
-                serverSocket.close();
-            }
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error closing server socket: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        if (server != null && !server.isClosed()) {
+            server.close();
         }
+        Menu.backToMenu(this);
     }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -214,12 +217,14 @@ public class PortingChatServer extends javax.swing.JFrame {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea msgArea;
     private javax.swing.JButton sendBtn;
     private javax.swing.JButton startBtn;
+    private javax.swing.JTextField textFieldMaxSize;
     private javax.swing.JTextField textFieldPort;
     // End of variables declaration//GEN-END:variables
 }
